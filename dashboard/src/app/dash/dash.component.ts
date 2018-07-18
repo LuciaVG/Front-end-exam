@@ -18,8 +18,8 @@ export class DashComponent implements OnInit {
   user = null;
   items: Observable<any[]>;
   data: Observable<any[]>;
-  clients: Observable<any[]>;
-  drivers: Observable<any[]>;
+  temp: Observable<any[]>;
+  temp2: Observable<any[]>;
 
   tripsWeek: Observable<any[]>;
   clientsWeek: Observable<any[]>;
@@ -71,8 +71,8 @@ export class DashComponent implements OnInit {
     }
     calcMonth(): number[]{
       var x = Array.from({ length: this.month.days }, () => 0);
-      var temp = this.db.list('/data', ref => ref.orderByChild('iTime').startAt(this.month.first).endAt(this.month.last)).valueChanges();
-      temp.subscribe(items => {
+      this.temp = this.db.list('/data', ref => ref.orderByChild('iTime').startAt(this.month.first).endAt(this.month.last)).valueChanges();
+      this.temp.subscribe(items => {
         items.forEach(item => {
           var tm = (new Date(parseInt(item.iTime)*1000)).getDate();
           x[tm-1] += 1;
@@ -87,8 +87,8 @@ export class DashComponent implements OnInit {
     calcHoursDay() : Object[]{
       const x = [];
       var lbl = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
-      var temp = this.db.list('/data', ref => ref.orderByChild('iTime').limitToLast(100)).valueChanges();
-      temp.subscribe(items => {
+      this.temp2 = this.db.list('/data', ref => ref.orderByChild('iTime').limitToLast(100)).valueChanges();
+      this.temp2.subscribe(items => {
         items.forEach(item => {
           var d = (new Date(parseInt(item.iTime)*1000)).getDay();
           var h = (new Date(parseInt(item.iTime)*1000)).getHours();
