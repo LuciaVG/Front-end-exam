@@ -1,0 +1,83 @@
+<div class="main">
+  <div id="card-container">
+  <mat-card class="half">
+    <mat-card-header>
+      <mat-card-title>Esta semana</mat-card-title>
+    </mat-card-header>
+    <mat-grid-list cols="3" rowHeight="4:1" class="accent">
+      <mat-grid-tile *ngIf="tripsWeek | async; else loading; let tripsWeek$">
+        {{tripsWeek$.length}}
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="clientsWeek | async; else loading; let clientsWeek$">
+        {{clientsWeek$.length}}
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="driversWeek | async; else loading; let driversWeek$">
+        {{driversWeek$.length}}
+      </mat-grid-tile>
+      <ng-template #loading>
+      </ng-template>
+    </mat-grid-list>
+    <mat-grid-list cols="3" rowHeight="8:1">
+      <mat-grid-tile *ngIf="tripsWeek | async; else loading; let tripsWeek$">
+        Viajes
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="clientsWeek | async; else loading; let clientsWeek$">
+        Nuevos clientes
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="driversWeek | async; else loading; let driversWeek$">
+      Nuevos conductores
+      </mat-grid-tile>
+      <ng-template #loading>
+      </ng-template>
+    </mat-grid-list>
+  </mat-card>
+  <mat-card class="half">
+    <mat-card-header>
+      <mat-card-title>Clientes mas frecuentes</mat-card-title>
+    </mat-card-header>
+    <ul>
+      <li>
+      Massa Consulting
+    </li>
+      <li>
+      Tempus Ltd
+    </li>
+      <li>
+Proin Incorporated
+    </li>
+
+    </ul>
+    <ul>
+   <li *ngFor="let hero of topClients">
+     {{ hero.l }}
+   </li>
+ </ul>
+
+  </mat-card>
+</div>
+<mat-card>
+</mat-card>
+  <div id="card-container">
+  <mat-card  class="half">
+    <mat-card-header>
+      <div mat-card-avatar src="https://source.unsplash.com/random/200x200"></div>
+      <mat-card-title>Numero de viajes en el mes</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="chart">
+      <canvas id="canvas">{{ chart }}</canvas>
+    </div>
+  </mat-card>
+  <mat-card class="half">
+    <mat-card-header>
+      <div mat-card-avatar src="https://source.unsplash.com/random/200x200"></div>
+      <mat-card-title>Frecuencia de viajes</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="chart2">
+      <canvas id="canvas2">{{ chart2 }}</canvas>
+    </div>
+  </mat-card>
+</div>
+
+
+
+  </div>

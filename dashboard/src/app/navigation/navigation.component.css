@@ -1,0 +1,44 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+mat-toolbar{
+  width: 100%;
+  height: 64px;
+  position: static;
+  z-index: 3;
+  background-color: rgb(154,154,154);
+  color: pink;
+}
+
+.mat-toolbar.mat-primary{
+  background-color: #3c457D;
+  color: white;
+}
+
+mat-sidenav{
+  margin-top: 64px;
+  background-color: white;
+  color:  pink;
+  border-color: #E0E0E0 ;
+  box-shadow: 1px 0px 7px grey;
+}
+
+router-outlet{
+  height: 100%;
+  position: static;
+  z-index: 1  ;
+}
+
+body{
+  background-color: #e6e8f4;
+}
