@@ -24,7 +24,7 @@ export class DashComponent implements OnInit {
   tripsWeek: Observable<any[]>;
   clientsWeek: Observable<any[]>;
   driversWeek: Observable<any[]>;
-  topClients = [{'l': 'Massa Consulting'}, {'l': 'Massa Consulting'}, {'l': 'Massa Consulting'}];
+  topClients = ['Massa Consulting', 'Mi Fringilla Mi Consulting', 'Nec Urna Ltd'];
 
   month = {"num": 0,
   "days": 0,
@@ -120,22 +120,9 @@ export class DashComponent implements OnInit {
         this.tripsWeek = this.calcWeek('/data', 'iTime');
         this.clientsWeek = this.calcWeek('/clients', 'iDate');
         this.driversWeek = this.calcWeek('/drivers', 'iDate');
-        this.topClients = this.getTop();
       }
 
-      getTop(): Observable<any[]> {
-        var temp = this.db.list('/data').valueChanges();
-        temp.subscribe(
-          items => {
-            items.forEach(item => {
-              var tm = (new Date(parseInt(item.iTime)*1000)).getDate();
-              x[tm-1] += 1;
-            });
-          }
 
-        );
-        return temp;
-      }
 
       initChart(){
         this.chart = new Chart('canvas', {
